@@ -6,9 +6,19 @@ var buttonColours = ["red", "blue", "green", "yellow"];
 
 var startGame = 0;
 
+var touchTimes = 0;
+
 var level = 0;
 
-// Starting game
+// Configuring h1 regarding device size
+
+var viewPortWidth = $(window).width();
+
+if ( viewPortWidth <= 768 ) {
+	$("h1").text("Touch here to start")
+};
+
+// Start the game by prees any key
 
 $(document).keydown(function(){
 
@@ -20,6 +30,19 @@ $(document).keydown(function(){
 	startGame++;
 		
 });
+
+// Start the game by tapping h1 area
+
+$("h1").on({"touchstart" : function(){
+
+	if(touchTimes === 0){
+		
+		nextSequence();
+	}
+
+	touchTimes++;
+
+}});
 
 // Generating next sequence
 
@@ -111,7 +134,13 @@ function animatePress(currentColour){
 // Wrong alert function
 
 function wrongAlert(){
-	$("h1").text("Game Over, Press any key to restart");
+
+	if ( viewPortWidth <= 768 ) {
+		$("h1").text("Game Over, Touch here to restart");
+	} else{
+		$("h1").text("Game Over, Press any key to restart");
+	};
+
 	$("body").addClass("game-over");
 
 	var wrongAudio = new Audio("sounds/wrong.mp3");
@@ -135,7 +164,11 @@ function startOver(){
 
 	startGame = 0;
 
+	touchTimes = 0;
+
 	level = 0;
+
+	viewPortWidth = 0;
 }
 
 

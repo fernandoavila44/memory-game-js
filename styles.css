@@ -1,3 +1,9 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   text-align: center;
   background-color: #011F3F;
@@ -11,10 +17,8 @@ body {
 }
 
 .container {
-  display: block;
-  width: 50%;
-  margin: auto;
-
+  display: flex;
+  flex-direction: column;
 }
 
 .btn {
@@ -50,4 +54,44 @@ body {
 .pressed {
   box-shadow: 0 0 20px white;
   background-color: grey;
+}
+
+@media (min-width: 426px) and (max-width: 768px){
+
+  #level-title{
+    font-size: 2rem;
+  }
+
+  .btn{
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 425px){
+
+  main{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #level-title{
+    font-size: 1.5rem;
+  }
+
+  .btn{
+    margin: 0.5rem;
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 320px){
+  .btn{
+    margin: 0.5rem;
+    width: 130px;
+    height: 130px;
+  }
 }
